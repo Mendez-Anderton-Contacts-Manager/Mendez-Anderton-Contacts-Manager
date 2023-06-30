@@ -72,23 +72,37 @@ public class Main {
                     String userInputPhone = input.getString();
 
                     Contact contact = new Contact(userInputName, userInputPhone);
-                    List<String> contactList = Arrays.asList(contact.toString());
 
-                    Path filepath = Paths.get("contacts.txt");
-//
-                    Files.write(filepath, contactList);
-
-
-
+                    contactsFromFile.add(contact.toString());
                     break;
                 case 3:
-                    //searchContact method
+                    String userSearch = input.getString();
+
+                    for (String contactpers : contactsFromFile) {
+                        if (contactpers.contains(userSearch)) {
+                            System.out.println(contactpers);
+                            System.out.println();
+                        }
+                    }
                     break;
                 case 4:
                     //deleteContact method
+                    userSearch = input.getString();
+
+                    for (String contactpers : contactsFromFile) {
+                        if (contactpers.contains(userSearch)) {
+                            System.out.println(contactpers);
+                            contactsFromFile.remove(contactsFromFile.indexOf(contactpers));
+                        }
+                    }
                     break;
                 case 5:
                     choice = false;
+
+                    Path filepath = Paths.get("contacts.txt");
+//
+                    Files.write(filepath, contactsFromFile);
+
                     break;
                 default:
                     System.out.println("Invalid choice");
