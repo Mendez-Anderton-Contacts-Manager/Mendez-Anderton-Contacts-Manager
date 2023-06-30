@@ -2,6 +2,7 @@ package util;
 
 import java.util.Scanner;
 
+
 public class Input {
     private Scanner scanner;
 
@@ -31,6 +32,17 @@ public class Input {
 
     public int getInt() {
         System.out.print("Enter an integer: ");
+        while (true) {
+            try {
+                return Integer.valueOf(getString());
+            } catch (NumberFormatException e) {
+                System.out.println("That's not a valid integer. Try again.");
+            }
+        }
+    }
+
+    public int getInt(String prompt) {
+        System.out.print(prompt);
         while (true) {
             try {
                 return Integer.valueOf(getString());
