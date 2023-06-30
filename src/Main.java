@@ -19,9 +19,17 @@ public class Main {
         }
     }
 
+    public static void printContacts(String contact, int i) {
+        if (i == 0) {
+            System.out.println("Name        | Phone Number  |");
+            System.out.println("-----------------------------");
+        }
+        System.out.println(contact);
+    }
+
     public static void viewContacts() {
         for (int i = 0; i < contactsFromFile.size(); i += 1) {
-            System.out.println(contactsFromFile.get(i));
+            printContacts(contactsFromFile.get(i), i);
         }
         System.out.println();
     }
@@ -63,7 +71,7 @@ public class Main {
             if (contactpers.contains(userSearch)) {
                 i++;
                 System.out.println("Contact deleted");
-                contactsFromFile.remove(contactsFromFile.indexOf(contactpers));
+                contactsFromFile.remove(contactpers);
                 break;
             }
         }
@@ -73,12 +81,9 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException {
-        String filename = "contacts.txt";
 
-        Path dataFile = Paths.get(filename);
-
-        if (! Files.exists(dataFile)) {
-            Files.createFile(dataFile);
+        if (! Files.exists(contactsPath)) {
+            Files.createFile(contactsPath);
         }
 
         boolean choice = true;
@@ -102,6 +107,7 @@ public class Main {
                     createContact();
                     break;
                 case 3:
+                    //searchContact method
                     searchContact();
                     break;
                 case 4:
@@ -110,8 +116,7 @@ public class Main {
                     break;
                 case 5:
                     choice = false;
-                    Path filepath = Paths.get("contacts.txt");
-                    Files.write(filepath, contactsFromFile);
+                    Files.write(contactsPath, contactsFromFile);
                     break;
                 default:
                     System.out.println("Invalid choice");
