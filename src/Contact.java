@@ -12,6 +12,6 @@ public class Contact {
     }
 
     public String toString() {
-        return name + " | " + phoneNumber;
+        return String.format("%-12s| %-14s|", name, phoneNumber);
     }
 }
