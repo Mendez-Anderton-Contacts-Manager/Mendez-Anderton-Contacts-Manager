@@ -7,20 +7,20 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class ContactManager {
-    public static List<String> contactsFromFile;
+    public List<String> contactsFromFile;
     public Path contactsPath;
-    public static Input input;
+    public Input input;
 
     public ContactManager(String filePath, Input input) throws IOException {
         this.contactsPath = Paths.get(filePath);
-        ContactManager.input = input;
+        this.input = input;
         if (! Files.exists(contactsPath)) {
             Files.createFile(contactsPath);
         }
-        contactsFromFile = Files.readAllLines(contactsPath);
+        this.contactsFromFile = Files.readAllLines(contactsPath);
     }
 
-    public static void printContacts(String contact, int i) {
+    public void printContacts(String contact, int i) {
         if (i == 0) {
             System.out.println("Name        | Phone Number  |");
             System.out.println("-----------------------------");
@@ -28,14 +28,14 @@ public class ContactManager {
         System.out.println(contact);
     }
 
-    public static void viewContacts() {
+    public void viewContacts() {
         for (int i = 0; i < contactsFromFile.size(); i += 1) {
             printContacts(contactsFromFile.get(i), i);
         }
         System.out.println();
     }
 
-    public static void createContact() {
+    public void createContact() {
         System.out.println("Enter contact name:");
         String userInputName = input.getString();
         System.out.println("Enter contact phone number:");
@@ -46,7 +46,7 @@ public class ContactManager {
         contactsFromFile.add(contact.toString());
     }
 
-    public static void searchContact() {
+    public void searchContact() {
         System.out.println("Enter contact name to search:");
         String userSearch = input.getString();
         int i = 0;
@@ -64,7 +64,7 @@ public class ContactManager {
 
     }
 
-    public static void deleteContact() {
+    public void deleteContact() {
         System.out.println("Enter contact to delete:");
         String userSearch = input.getString();
         int i = 0;

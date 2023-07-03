@@ -19,24 +19,15 @@ public class Main {
             int userOption = input.getInt("Enter an option (1, 2, 3, 4, or 5)\n");
 
             switch (userOption) {
-                case 1:
-                    ContactManager.viewContacts();
-                    break;
-                case 2:
-                    ContactManager.createContact();
-                    break;
-                case 3:
-                    ContactManager.searchContact();
-                    break;
-                case 4:
-                    ContactManager.deleteContact();
-                    break;
-                case 5:
+                case 1 -> manager.viewContacts();
+                case 2 -> manager.createContact();
+                case 3 -> manager.searchContact();
+                case 4 -> manager.deleteContact();
+                case 5 -> {
                     choice = false;
                     manager.saveContacts();
-                    break;
-                default:
-                    System.out.println("Invalid choice");
+                }
+                default -> System.out.println("Invalid choice");
             }
         }
     }
