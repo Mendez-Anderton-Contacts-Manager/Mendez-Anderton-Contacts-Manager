@@ -7,9 +7,9 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class ContactManager {
-    public List<String> contactsFromFile;
-    public Path contactsPath;
-    public Input input;
+    private final List<String> contactsFromFile;
+    private final Path contactsPath;
+    private final Input input;
 
     public ContactManager(String filePath, Input input) throws IOException {
         this.contactsPath = Paths.get(filePath);
